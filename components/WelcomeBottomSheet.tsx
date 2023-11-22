@@ -1,5 +1,5 @@
 import BottomSheet from "@gorhom/bottom-sheet";
-import { useRouter } from "expo-router";
+import { router } from "expo-router";
 import React, { useMemo, useRef } from "react";
 import { StyleSheet, Text } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -8,8 +8,6 @@ import LoginWithSocial from "./LoginWithSocial";
 import Separator from "./Separator";
 
 const WelcomeBottomSheet = () => {
-  const router = useRouter();
-
   const goToLogin = () => {
     router.replace("/login");
   };

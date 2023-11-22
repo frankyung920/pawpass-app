@@ -1,44 +1,25 @@
 import Colors from "@/constants/Colors";
+import { routerPush } from "@/router";
 import React from "react";
 import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 const PETS = [
   {
-    name: "Daltonic",
-    uri: "https://avatars.githubusercontent.com/u/29388627?v=4",
+    name: "Happy",
+    uri: "https://images.dog.ceo/breeds/terrier-welsh/lucy.jpg",
   },
   {
     name: "Bobby",
-    uri: "https://randomuser.me/api/portraits/men/31.jpg",
+    uri: "https://images.dog.ceo/breeds/spaniel-cocker/n02102318_2226.jpg",
   },
   {
-    name: "Success",
-    uri: "https://randomuser.me/api/portraits/women/2.jpg",
+    name: "Dodo",
+    uri: "https://images.dog.ceo/breeds/poodle-toy/n02113624_2905.jpg",
   },
   {
     name: "Matt",
-    uri: "https://randomuser.me/api/portraits/men/60.jpg",
-  },
-  {
-    name: "Lukas",
-    uri: "https://randomuser.me/api/portraits/men/59.jpg",
-  },
-  {
-    name: "Sabrinah",
-    uri: "https://randomuser.me/api/portraits/women/29.jpg",
-  },
-  {
-    name: "Sabrinah",
-    uri: "https://randomuser.me/api/portraits/women/29.jpg",
-  },
-  {
-    name: "Sabrinah",
-    uri: "https://randomuser.me/api/portraits/women/29.jpg",
-  },
-  {
-    name: "Daltonic",
-    uri: "https://avatars.githubusercontent.com/u/29388627?v=4",
+    uri: "https://images.dog.ceo/breeds/shiba/shiba-18.jpg",
   },
 ] as IPetProfile[];
 
@@ -60,7 +41,10 @@ const DogProfiles = () => {
             </Text>
           </TouchableOpacity>
         ))}
-        <TouchableOpacity style={styles.addNewPetContainer}>
+        <TouchableOpacity
+          style={styles.addNewPetContainer}
+          onPress={() => routerPush("/verification")}
+        >
           <Image
             source={require("@/assets/images/add-new-profile.png")}
             style={styles.addNewPet}

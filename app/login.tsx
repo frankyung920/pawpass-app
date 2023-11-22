@@ -4,8 +4,8 @@ import Separator from "@/components/Separator";
 import MessageModal from "@/components/modals/MessageModal";
 import Colors from "@/constants/Colors";
 import { defaultStyles } from "@/constants/Styles";
+import { routerPush } from "@/router";
 import { Ionicons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
   Image,
@@ -18,7 +18,6 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const Login = () => {
-  const router = useRouter();
   const [showModal, setShowModal] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -32,11 +31,11 @@ const Login = () => {
     setShowModal(true);
   };
   const goToLogin = () => {
-    router.push("/login");
+    routerPush("/login");
   };
 
   const goToSignUp = () => {
-    router.push("/signUp");
+    routerPush("/signUp");
   };
   return (
     <SafeAreaView style={[defaultStyles.container, styles.container]}>
@@ -71,7 +70,7 @@ const Login = () => {
         <Text
           style={styles.forgotPassword}
           onPress={() => {
-            router.push("/forgotPassword");
+            routerPush("/forgotPassword");
           }}
         >
           Forgot password?
@@ -114,8 +113,7 @@ const Login = () => {
         text={LoginSignUpMessage.loginSuccess.text}
         onPressClose={() => {
           setShowModal(false);
-          // router.push("/addAPhoto");
-          router.push("/(tabs)/home");
+          routerPush("/(tabs)/home");
         }}
       ></MessageModal>
     </SafeAreaView>

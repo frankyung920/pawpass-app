@@ -1,10 +1,13 @@
+import { AddPhotoSectionMessage } from "@/assets/data/message";
 import CustomCamera from "@/components/CustomCamera";
 import PhotoModal from "@/components/modals/PhotoModal";
 import Colors from "@/constants/Colors";
 import { defaultStyles } from "@/constants/Styles";
+import { IAddPhotoSectionMessage } from "@/interfaces/message";
+import { routerPush } from "@/router";
 import { Camera } from "expo-camera";
-import { useRouter } from "expo-router";
-import React, { useState } from "react";
+import { useLocalSearchParams, usePathname } from "expo-router";
+import React, { useMemo, useState } from "react";
 import {
   Alert,
   Image,
@@ -15,8 +18,9 @@ import {
   View,
 } from "react-native";
 
-const addAPhoto = () => {
-  const router = useRouter();
+const PhotoSection = () => {
+  const { id } = useLocalSearchParams<{ id: string }>();
+  const current = usePathname();
   const [showModal, setShowModal] = useState(false);
   const [cameraOn, setCameraOn] = useState(false);
   const [picUploaded, setPicUploaded] = useState(false);
@@ -29,6 +33,14 @@ const addAPhoto = () => {
     setCameraOn(false);
   };
 
+  const { title, content, next, maybeLaterTo } = useMemo(
+    () =>
+      AddPhotoSectionMessage.find(
+        (e) => e.id === (id ? id : "success")
+      ) as IAddPhotoSectionMessage,
+    []
+  );
+
   const openPhotoModal = () => {
     setShowModal(true);
   };
@@ -36,12 +48,13 @@ const addAPhoto = () => {
   const confirmPhoto = () => {
     // TODO: Upload photo
     console.log("confirm");
+    routerPush(next);
   };
 
   const maybeLater = () => {
     // TODO: Skip Upload photo
     console.log("maybe later ");
-    router.push("/(tabs)/home");
+    routerPush(maybeLaterTo);
   };
 
   const startCamera = async () => {
@@ -58,10 +71,8 @@ const addAPhoto = () => {
     <SafeAreaView style={[defaultStyles.container, styles.container]}>
       <>
         <View style={styles.textContainer}>
-          <Text style={styles.title}>Add a Photo</Text>
-          <Text style={styles.text}>
-            Add your photo to show them who’s the owner!
-          </Text>
+          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.text}>{content}</Text>
 
           <View style={styles.imageContainer}>
             <Image style={styles.image} source={imageSource} />
@@ -118,11 +129,14 @@ const addAPhoto = () => {
       ></PhotoModal>
     </SafeAreaView>
   ) : (
-    <CustomCamera onImageSelected={(source: any) => updateProfilePic(source)} />
+    <CustomCamera
+      back={current}
+      onImageSelected={(source: any) => updateProfilePic(source)}
+    />
   );
 };
 
-export default addAPhoto;
+export default PhotoSection;
 
 const styles = StyleSheet.create({
   container: {

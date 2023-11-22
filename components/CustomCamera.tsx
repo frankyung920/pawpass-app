@@ -1,20 +1,20 @@
 import CameraButton from "@/components/CameraButton";
+import { routerPush } from "@/router";
 import { Camera, CameraPictureOptions, CameraType } from "expo-camera";
 import Constants from "expo-constants";
 import * as MediaLibrary from "expo-media-library";
-import { useRouter } from "expo-router";
 import React, { useEffect, useRef, useState } from "react";
 import { Dimensions, Image, StyleSheet, View } from "react-native";
 
 interface Props {
   onImageSelected: any;
+  back: string;
 }
 
 const flashOff = Camera.Constants.FlashMode.Off;
 const height = Dimensions.get("window").height;
 
-const CustomCamera = ({ onImageSelected }: Props) => {
-  const router = useRouter();
+const CustomCamera = ({ onImageSelected, back }: Props) => {
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
   const [image, setImage] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.front);
@@ -61,7 +61,7 @@ const CustomCamera = ({ onImageSelected }: Props) => {
   };
 
   const goBack = () => {
-    router.push("/addAPhoto");
+    routerPush(back);
   };
 
   if (hasCameraPermission === false) {

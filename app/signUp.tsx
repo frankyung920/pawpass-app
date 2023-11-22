@@ -4,8 +4,8 @@ import MessageModal from "@/components/modals/MessageModal";
 import Separator from "@/components/Separator";
 import Colors from "@/constants/Colors";
 import { defaultStyles } from "@/constants/Styles";
+import { routerPush } from "@/router";
 import { Ionicons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
   Image,
@@ -18,7 +18,6 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const SignUp = () => {
-  const router = useRouter();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,7 +28,7 @@ const SignUp = () => {
     setIsPasswordVisible(!isPasswordVisible);
   };
   const goToLogin = () => {
-    router.push("/login");
+    routerPush("/login");
   };
   const signUp = () => {
     // TODO: Sign Up
@@ -136,7 +135,7 @@ const SignUp = () => {
         text={LoginSignUpMessage.signUpSuccess.text}
         onPressClose={() => {
           setShowModal(false);
-          router.push("/addAPhoto");
+          routerPush("/addPhoto/onboarding");
         }}
       ></MessageModal>
     </SafeAreaView>

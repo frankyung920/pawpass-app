@@ -1,5 +1,5 @@
 import { useFonts } from "expo-font";
-import { SplashScreen, Stack, useRouter } from "expo-router";
+import { SplashScreen, Stack, router } from "expo-router";
 import { useEffect, useState } from "react";
 
 export {
@@ -9,7 +9,16 @@ export {
 
 export const unstable_settings = {
   // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: "/welcome",
+  initialRouteName: "welcome",
+  auth: {
+    initialRouteName: "/welcome",
+  },
+  tabs: {
+    initialRouteName: "/home",
+  },
+  verification: {
+    initialRouteName: "/indexPage",
+  },
 };
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -27,7 +36,9 @@ export default function RootLayout() {
 
   // Expo Router uses Error Boundaries to catch errors in the navigation tree.
   useEffect(() => {
-    if (error) throw error;
+    if (error) {
+      throw error;
+    }
   }, [error]);
 
   useEffect(() => {
@@ -44,22 +55,22 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
-  const router = useRouter();
   const [isSignedIn, setIsSignedIn] = useState(false);
 
   useEffect(() => {
-    if (!isSignedIn) {
-      router.push("/welcome");
-    }
+    router.push("/welcome");
+    // router.push("/verification/scanOwnerId");
   }, []);
+
   return (
     <Stack>
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      <Stack.Screen name="addAPhoto" options={{ headerShown: false }} />
-      <Stack.Screen name="forgotPassword" options={{ headerShown: false }} />
+      <Stack.Screen name="welcome" options={{ headerShown: false }} />
       <Stack.Screen name="signUp" options={{ headerShown: false }} />
       <Stack.Screen name="login" options={{ headerShown: false }} />
-      <Stack.Screen name="welcome" options={{ headerShown: false }} />
+      <Stack.Screen name="forgotPassword" options={{ headerShown: false }} />
+      <Stack.Screen name="addPhoto/[id]" options={{ headerShown: false }} />
+      <Stack.Screen name="verification" options={{ headerShown: false }} />
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
     </Stack>
   );
 }

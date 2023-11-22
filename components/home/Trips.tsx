@@ -7,9 +7,10 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 
 const Trips = () => {
   // TODO: check have pet or not
-
-  const [hasPet, setHasPet] = useState(false);
+  const [hasPet, setHasPet] = useState(true);
   const [hasTrip, setHasTrip] = useState(false);
+
+  const addNewTrip = () => {};
   return (
     <View style={defaultStyles.cardContainer}>
       <Text style={defaultStyles.cardTitle}>Trips</Text>
@@ -19,6 +20,7 @@ const Trips = () => {
             hasPet ? defaultStyles.primaryBtn : defaultStyles.greyBtn,
             styles.addNewPetBtn,
           ]}
+          onPress={addNewTrip}
         >
           <Text
             style={[

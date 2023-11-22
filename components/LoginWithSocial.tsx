@@ -1,6 +1,6 @@
+import { routerPush } from "@/router";
 import { AntDesign, Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import * as Google from "expo-auth-session/providers/google";
-import { useRouter } from "expo-router";
 import * as WebBrowser from "expo-web-browser";
 import React, { useEffect, useState } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
@@ -15,7 +15,6 @@ WebBrowser.maybeCompleteAuthSession();
 // console.log(isExpoGo);
 
 const LoginWithSocial = ({ login }: Props) => {
-  const router = useRouter();
   const [userInfo, setUserInfo] = useState(null);
 
   const [request, response, promptAsync] = Google.useAuthRequest({
@@ -29,7 +28,10 @@ const LoginWithSocial = ({ login }: Props) => {
 
   useEffect(() => {
     const res = response as IGoogleLogin;
-    router.push("/(tabs)/home");
+    if (res) {
+      console.log("res");
+      routerPush("/(tabs)/home");
+    }
   }, [response]);
 
   return (
