@@ -58,8 +58,8 @@ function RootLayoutNav() {
   const [isSignedIn, setIsSignedIn] = useState(false);
 
   useEffect(() => {
-    router.push("/welcome");
-    // router.push("/verification/scanOwnerId");
+    // router.push("/welcome");
+    router.push("/(tabs)/id");
   }, []);
 
   return (
@@ -70,6 +70,8 @@ function RootLayoutNav() {
       <Stack.Screen name="forgotPassword" options={{ headerShown: false }} />
       <Stack.Screen name="addPhoto/[id]" options={{ headerShown: false }} />
       <Stack.Screen name="verification" options={{ headerShown: false }} />
+      <Stack.Screen name="travels" options={{ headerShown: false }} />
+      <Stack.Screen name="notifications" options={{ headerShown: false }} />
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
     </Stack>
   );

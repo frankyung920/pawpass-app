@@ -54,6 +54,7 @@ export default function TabLayout() {
         name="id"
         options={{
           title: "ID",
+          headerRight: () => <></>,
           tabBarIcon: ({ color, focused }) => (
             <TabIcon color={color} name={"id"} focused={focused} />
           ),

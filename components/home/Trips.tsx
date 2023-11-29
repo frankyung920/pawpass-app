@@ -1,5 +1,6 @@
 import Colors from "@/constants/Colors";
 import { defaultStyles } from "@/constants/Styles";
+import { routerPush } from "@/router";
 import { FontAwesome5, MaterialCommunityIcons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
@@ -10,7 +11,9 @@ const Trips = () => {
   const [hasPet, setHasPet] = useState(true);
   const [hasTrip, setHasTrip] = useState(false);
 
-  const addNewTrip = () => {};
+  const addNewTrip = () => {
+    routerPush("/travels/planNewTrip");
+  };
   return (
     <View style={defaultStyles.cardContainer}>
       <Text style={defaultStyles.cardTitle}>Trips</Text>
