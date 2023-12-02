@@ -1,8 +1,61 @@
+import PetInformation from "@/components/id/PetInformation";
 import { LinearGradient } from "expo-linear-gradient";
-import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
-import QRCode from "react-native-qrcode-svg";
-const id = () => {
+import React, { useState } from "react";
+import { StyleSheet } from "react-native";
+import PagerView from "react-native-pager-view";
+
+interface Response {
+  name: string;
+  qrCode: string;
+  profilePic: string;
+  results: any[];
+}
+
+const Id = () => {
+  const [names, setNames] = useState(["Dog's Name", "Dog's Name 2"]);
+  const [qrCodes, setQrCodes] = useState([
+    "https://images.dog.ceo/breeds/terrier-welsh/lucy.jpg",
+    "https://images.dog.ceo/breeds/lhasa/n02098413_17759.jpg",
+  ]);
+  const [profilePics, setProfilePics] = useState([
+    "https://images.dog.ceo/breeds/terrier-welsh/lucy.jpg",
+    "https://images.dog.ceo/breeds/lhasa/n02098413_17759.jpg",
+  ]);
+  const [microchips, setMicrochips] = useState([
+    "123-456-123-456-789",
+    "123-456-123-456-789",
+  ]);
+
+  const [results, setResults] = useState([
+    [
+      {
+        success: false,
+        text: "Rabies Vaccination: need booster",
+      },
+      {
+        success: true,
+        text: "Tapeworm treatment: done",
+      },
+      {
+        success: true,
+        text: "Microchip: verified",
+      },
+    ],
+    [
+      {
+        success: false,
+        text: "Rabies Vaccination: need booster",
+      },
+      {
+        success: true,
+        text: "Tapeworm treatment: done",
+      },
+      {
+        success: true,
+        text: "Microchip: verified",
+      },
+    ],
+  ]);
   return (
     <LinearGradient
       colors={["#289490", "#3D4C70"]}
@@ -10,72 +63,31 @@ const id = () => {
       start={{ x: 0, y: 0 }}
       end={{ x: 0, y: 1 }}
     >
-      <View style={styles.profilePicContainer}>
-        <Image
-          source={{
-            uri: "https://images.dog.ceo/breeds/terrier-welsh/lucy.jpg",
-          }} // Replace with your dog image URL
-          style={styles.profilePic}
-        />
-      </View>
-      <View style={styles.infoContainer}>
-        <View style={styles.contentContainer}>
-          <QRCode
-            value="https://images.dog.ceo/breeds/terrier-welsh/lucy.jpg" // Replace with your desired value
-            logoBackgroundColor="transparent"
-            backgroundColor="transparent"
-            color="white"
-            logoMargin={5}
-            logo={require("@/assets/images/qr-logo.png")}
-          />
-          <Text style={styles.nameText}>Dog's Name</Text>
-          <Text style={styles.idText}>ID: 12345</Text>
-        </View>
-      </View>
+      <PagerView style={styles.viewPager} initialPage={0}>
+        {names.map((name, index) => {
+          return (
+            <PetInformation
+              key={index}
+              name={name}
+              qrCode={qrCodes[index]}
+              profilePic={profilePics[index]}
+              microchip={microchips[index]}
+              results={results[index]}
+            ></PetInformation>
+          );
+        })}
+      </PagerView>
     </LinearGradient>
   );
 };
 
-export default id;
+export default Id;
 
 const styles = StyleSheet.create({
+  viewPager: {
+    flex: 1,
+  },
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  profilePicContainer: {
-    width: 120,
-    height: 120,
-    borderRadius: 60,
-    overflow: "hidden",
-    zIndex: 1,
-  },
-  profilePic: {
-    width: "100%",
-    height: "100%",
-  },
-  infoContainer: {
-    width: "80%",
-    backgroundColor: "rgba(255, 255, 255, 0.25)", // Semi-transparent background
-    borderRadius: 16,
-    borderWidth: 1,
-    borderColor: "#E9EAEB", // Solid border color
-    marginTop: -60,
-    zIndex: 0,
-  },
-  contentContainer: {
-    paddingTop: 70,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  nameText: {
-    fontSize: 18,
-    marginTop: 10,
-  },
-  idText: {
-    fontSize: 16,
-    color: "grey",
-    marginTop: 5,
   },
 });

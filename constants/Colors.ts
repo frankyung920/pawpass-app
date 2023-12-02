@@ -23,6 +23,10 @@ export default {
     secondary: "#E1E1E1",
     tertiary: "#C4C4C4",
   },
+  success: {
+    default: "#029F54",
+    inverse: "#97D8B0",
+  },
   warning: {
     default: "#F3C41E",
     inverse: "#F5EBC9",
