@@ -12,21 +12,21 @@ import {
   View,
 } from "react-native";
 const travel = () => {
-  // const [items, setItems] = useState([
-  //   {
-  //     id: "1",
-  //     title: "Paris Adventure",
-  //     date: "27. 09. 2023 - 05. 10. 2023",
-  //     numOfDoc: 1,
-  //   },
-  //   {
-  //     id: "2",
-  //     title: "Germany Adventure",
-  //     date: "11. 10. 2023 - 25. 10. 2023",
-  //     numOfDoc: 4,
-  //   },
-  // ]);
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState([
+    {
+      id: "1",
+      title: "Paris Adventure",
+      date: "27. 09. 2023 - 05. 10. 2023",
+      numOfDoc: 1,
+    },
+    {
+      id: "2",
+      title: "Germany Adventure",
+      date: "11. 10. 2023 - 25. 10. 2023",
+      numOfDoc: 4,
+    },
+  ]);
+  // const [items, setItems] = useState([]);
 
   const renderCard = (item: any, index: number) => {
     const { id, title, date, numOfDoc } = item;
@@ -73,7 +73,7 @@ const travel = () => {
       ) : (
         <View style={styles.empty}>
           <Image
-            source={require("@/assets/images/travel/empty.png")}
+            source={require("@/assets/images/bg-empty.png")}
             resizeMode="contain"
             style={styles.backgroundImage}
           ></Image>

@@ -22,7 +22,7 @@ const Result = ({ success, text }: Props) => {
           size={24}
           color={Colors.contrast.primary}
         />
-        <Text style={styles.resultText}>Rabies Vaccination: need booster</Text>
+        <Text style={styles.resultText}>{text}</Text>
       </View>
     </View>
   );

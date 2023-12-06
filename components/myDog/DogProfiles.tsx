@@ -4,26 +4,11 @@ import React from "react";
 import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-const PETS = [
-  {
-    name: "Happy",
-    uri: "https://images.dog.ceo/breeds/terrier-welsh/lucy.jpg",
-  },
-  {
-    name: "Bobby",
-    uri: "https://images.dog.ceo/breeds/spaniel-cocker/n02102318_2226.jpg",
-  },
-  {
-    name: "Dodo",
-    uri: "https://images.dog.ceo/breeds/poodle-toy/n02113624_2905.jpg",
-  },
-  {
-    name: "Matt",
-    uri: "https://images.dog.ceo/breeds/shiba/shiba-18.jpg",
-  },
-] as IPetProfile[];
+interface Props {
+  pets: IPetProfile[];
+}
 
-const DogProfiles = () => {
+const DogProfiles = ({ pets }: Props) => {
   return (
     <View style={{ marginBottom: 13, paddingLeft: 10 }}>
       <ScrollView
@@ -31,7 +16,7 @@ const DogProfiles = () => {
         horizontal
         showsHorizontalScrollIndicator={false}
       >
-        {PETS.map((pet, index) => (
+        {pets.map((pet, index) => (
           <TouchableOpacity key={index} style={styles.profileContainer}>
             <Image source={{ uri: pet.uri }} style={styles.profilePic} />
             <Text style={styles.name}>

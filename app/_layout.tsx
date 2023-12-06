@@ -58,8 +58,7 @@ function RootLayoutNav() {
   const [isSignedIn, setIsSignedIn] = useState(false);
 
   useEffect(() => {
-    // router.push("/welcome");
-    router.push("/(tabs)/id");
+    router.push("/myDog");
   }, []);
 
   return (

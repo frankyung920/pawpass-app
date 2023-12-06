@@ -44,5 +44,8 @@ export default {
     link: {
       primary: "#B4C5E4",
     },
+    background: {
+      1: "#20324D",
+    },
   },
 };

@@ -68,11 +68,13 @@ const Id = () => {
           return (
             <PetInformation
               key={index}
+              index={index}
               name={name}
               qrCode={qrCodes[index]}
               profilePic={profilePics[index]}
               microchip={microchips[index]}
               results={results[index]}
+              total={qrCodes.length}
             ></PetInformation>
           );
         })}
