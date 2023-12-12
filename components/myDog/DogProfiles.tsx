@@ -10,7 +10,7 @@ interface Props {
 
 const DogProfiles = ({ pets }: Props) => {
   return (
-    <View style={{ marginBottom: 13, paddingLeft: 10 }}>
+    <View style={{ marginBottom: 13 }}>
       <ScrollView
         style={styles.profileViewContainer}
         horizontal

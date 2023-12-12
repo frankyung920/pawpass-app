@@ -23,6 +23,11 @@ export default {
     secondary: "#E1E1E1",
     tertiary: "#C4C4C4",
   },
+  icons: {
+    primary: "#268E8A",
+    secondary: "#000000",
+    tertiary: "#54647C",
+  },
   success: {
     default: "#029F54",
     inverse: "#97D8B0",

@@ -1,5 +1,6 @@
 import DogProfiles from "@/components/myDog/DogProfiles";
 import EmptyMyDog from "@/components/myDog/EmptyMyDog";
+import MyDogDetails from "@/components/myDog/MyDogDetails";
 import Passport from "@/components/myDog/Passport";
 import Colors from "@/constants/Colors";
 import React, { useState } from "react";
@@ -30,11 +31,10 @@ const MyDog = () => {
       {items.length !== 0 ? (
         <View style={styles.scrollView}>
           <DogProfiles pets={items} />
-          <View style={styles.content}>
-            <Passport
-              image={"https://images.dog.ceo/breeds/terrier-welsh/lucy.jpg"}
-            ></Passport>
-          </View>
+          <Passport
+            image={"https://images.dog.ceo/breeds/terrier-welsh/lucy.jpg"}
+          ></Passport>
+          <MyDogDetails />
         </View>
       ) : (
         <EmptyMyDog />
@@ -49,14 +49,11 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.background[2],
     flex: 1,
-    paddingVertical: 12,
   },
   scrollView: {
-    flex: 1,
     backgroundColor: Colors.background[2],
-  },
-  content: {
-    flex: 1,
     paddingHorizontal: 24,
+    flex: 1,
+    flexDirection: "column",
   },
 });

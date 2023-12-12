@@ -71,6 +71,7 @@ function RootLayoutNav() {
       <Stack.Screen name="verification" options={{ headerShown: false }} />
       <Stack.Screen name="travels" options={{ headerShown: false }} />
       <Stack.Screen name="notifications" options={{ headerShown: false }} />
+      <Stack.Screen name="passports" options={{ headerShown: false }} />
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
     </Stack>
   );
