@@ -16,8 +16,11 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.usepawpass.pawpassapp"
+      "supportsTablet": false,
+      "bundleIdentifier": "com.usepawpass.pawpassapp",
+      "config": {
+        "usesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {

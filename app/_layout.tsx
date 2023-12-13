@@ -10,15 +10,6 @@ export {
 export const unstable_settings = {
   // Ensure that reloading on `/modal` keeps a back button present.
   initialRouteName: "welcome",
-  auth: {
-    initialRouteName: "/welcome",
-  },
-  tabs: {
-    initialRouteName: "/home",
-  },
-  verification: {
-    initialRouteName: "/indexPage",
-  },
 };
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -56,23 +47,24 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
   const [isSignedIn, setIsSignedIn] = useState(false);
+  // const { authState, onLogout } = useAuth();
 
   useEffect(() => {
-    router.push("/myDog");
+    router.push("/welcome");
   }, []);
 
   return (
     <Stack>
-      <Stack.Screen name="welcome" options={{ headerShown: false }} />
-      <Stack.Screen name="signUp" options={{ headerShown: false }} />
-      <Stack.Screen name="login" options={{ headerShown: false }} />
-      <Stack.Screen name="forgotPassword" options={{ headerShown: false }} />
       <Stack.Screen name="addPhoto/[id]" options={{ headerShown: false }} />
       <Stack.Screen name="verification" options={{ headerShown: false }} />
       <Stack.Screen name="travels" options={{ headerShown: false }} />
       <Stack.Screen name="notifications" options={{ headerShown: false }} />
       <Stack.Screen name="passports" options={{ headerShown: false }} />
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen name="welcome" options={{ headerShown: false }} />
+      <Stack.Screen name="signUp" options={{ headerShown: false }} />
+      <Stack.Screen name="login" options={{ headerShown: false }} />
+      <Stack.Screen name="forgotPassword" options={{ headerShown: false }} />
     </Stack>
   );
 }

@@ -2,28 +2,14 @@ import NotificationButton from "@/components/NotificationButton";
 import TabIcon from "@/components/TabIcon";
 import Colors from "@/constants/Colors";
 import { Tabs } from "expo-router";
+import { StyleSheet } from "react-native";
 
 export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarStyle: {
-          height: 105,
-          flexDirection: "row",
-          justifyContent: "space-between",
-          elevation: 4,
-          shadowColor: "#000",
-          shadowOpacity: 0.3,
-          shadowRadius: 4,
-          shadowOffset: {
-            width: 2,
-            height: 2,
-          },
-        },
-        headerTitleStyle: {
-          fontFamily: "pop-b",
-          fontSize: 16,
-        },
+        tabBarStyle: styles.tabBarStyle,
+        headerTitleStyle: styles.headerTitleStyle,
         headerRight: () => <NotificationButton />,
         tabBarShowLabel: false,
         tabBarInactiveTintColor: Colors.brand.tertiary,
@@ -74,7 +60,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="profile"
         options={{
-          title: "Profile",
+          title: "My Profile",
           tabBarIcon: ({ color, focused }) => (
             <TabIcon color={color} name={"profile"} focused={focused} />
           ),
@@ -83,3 +69,23 @@ export default function TabLayout() {
     </Tabs>
   );
 }
+
+const styles = StyleSheet.create({
+  tabBarStyle: {
+    height: 105,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    elevation: 4,
+    shadowColor: "#000",
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    shadowOffset: {
+      width: 2,
+      height: 2,
+    },
+  },
+  headerTitleStyle: {
+    fontFamily: "pop-b",
+    fontSize: 16,
+  },
+});
